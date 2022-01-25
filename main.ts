@@ -16,6 +16,7 @@ function Normal (num: number, num2: number) {
     if (P1 == answer) {
         info.changeScoreBy(1)
     }
+    return answer
 }
 function SuddenDeath (num: number, num2: number) {
     answer = num + num2
