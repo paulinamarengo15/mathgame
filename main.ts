@@ -1,6 +1,36 @@
-let p3 = 0
-let p2 = 0
+function PracticeProblems (num: number, num2: number) {
+    answer = num + num2
+    // Problem 1 is 2+2
+    P1 = game.askForNumber("" + num + "+" + num2 + "" + "=", 2)
+    while (P1 != answer) {
+        // Problem 1 is 2+2
+        P1 = game.askForNumber("" + num + "+" + num2 + "" + "=", 2)
+    }
+    return answer
+}
+function Normal (num: number, num2: number) {
+    answer = num + num2
+    // Problem 1 is 2+2
+    P1 = game.askForNumber("" + num + "+" + num2 + "" + "=", 2)
+    // if the user is correct, the score is change by 1
+    if (P1 == answer) {
+        info.changeScoreBy(1)
+    }
+}
+function SuddenDeath (num: number, num2: number) {
+    answer = num + num2
+    // Problem 1 is 2+2
+    P1 = game.askForNumber("" + num + "+" + num2 + "" + "=", 2)
+    // if correct score changes by 1 but if wrong game over
+    if (P1 == answer) {
+        info.changeScoreBy(1)
+    } else {
+        game.over(false)
+    }
+    return answer
+}
 let P1 = 0
+let answer = 0
 let practice = false
 scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -155,76 +185,25 @@ if (Play == false) {
     if (practice == true) {
         // tells the user good luck with information previously provided
         game.splash("In order to keep moving forward you must have it right" + " " + Name + " " + LastName + "." + " " + "!")
-        // Problem 1 is 2+2
-        P1 = game.askForNumber("2 + 2", 2)
-        while (P1 != 4) {
-            // Problem 1 is 2+2
-            P1 = game.askForNumber("2 + 2", 2)
-        }
-        // problem 2 is 10+5
-        p2 = game.askForNumber("10 + 5", 2)
-        while (p2 != 15) {
-            // problem 2 is 10+5
-            p2 = game.askForNumber("10 + 5", 2)
-        }
-        // problem 3 is 7+7
-        p3 = game.askForNumber("7 + 7", 2)
-        while (p3 != 14) {
-            // problem 3 is 7+7
-            p3 = game.askForNumber("7 + 7", 2)
-        }
+        PracticeProblems(randint(0, 10), randint(0, 10))
+        PracticeProblems(randint(0, 10), randint(0, 10))
+        PracticeProblems(randint(0, 10), randint(0, 10))
         // when not playing sudden death, it displays the score with best out of three.
         game.splash("score: " + "N/A")
     } else {
         // tells the user good luck with information previously provided
         game.splash("good luck " + Name + " " + LastName + "." + " " + "!")
-        // sets the score to 0
         info.setScore(0)
-        // Problem 1 is 2+2
-        P1 = game.askForNumber("2 + 2", 2)
-        // if the user is correct, the score is change by 1
-        if (P1 == 4) {
-            info.changeScoreBy(1)
-        }
-        // problem 2 is 10+5
-        p2 = game.askForNumber("10 + 5", 2)
-        // if the user is correct, it changes the score by 1
-        if (p2 == 15) {
-            info.changeScoreBy(1)
-        }
-        // problem 3 is 7+7
-        p3 = game.askForNumber("7 + 7", 2)
-        // if the user is correct, it changes the score by 1
-        if (p3 == 14) {
-            info.changeScoreBy(1)
-        }
+        Normal(randint(0, 10), randint(0, 10))
+        Normal(randint(0, 10), randint(0, 10))
+        Normal(randint(0, 10), randint(0, 10))
         // when not playing sudden death, it displays the score with best out of three.
         game.splash("score: " + info.score() + "/3")
     }
 } else if (true) {
     // says good luck using the input added previously
     game.splash("good luck in sudden death " + Name + " " + LastName + "." + " " + "!")
-    // problem 1 is 2+2
-    P1 = game.askForNumber("2 + 2", 2)
-    // if correct score changes by 1 but if wrong game over
-    if (P1 == 4) {
-        info.changeScoreBy(1)
-    } else {
-        game.over(false)
-    }
-    p2 = game.askForNumber("10 + 5", 2)
-    // if correct if correct score changes by 1 but if wrong game over
-    if (p2 == 15) {
-        info.changeScoreBy(1)
-    } else {
-        game.over(false)
-    }
-    p3 = game.askForNumber("7 + 7", 2)
-    // if correct the game is won, if wrong game is over.
-    if (p3 == 14) {
-        info.changeScoreBy(1)
-        game.over(true)
-    } else {
-        game.over(false)
-    }
+    SuddenDeath(randint(0, 10), randint(0, 10))
+    SuddenDeath(randint(0, 10), randint(0, 10))
+    SuddenDeath(randint(0, 10), randint(0, 10))
 }
