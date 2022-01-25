@@ -1,7 +1,42 @@
+function InputName () {
+    return game.askForString("what is your name?", 10)
+}
+function Play_Practice () {
+    // tells the user good luck with information previously provided
+    game.splash("In order to keep moving forward you must have it right" + " " + Name + " " + LastName + "." + " " + "!")
+    // Problem 1 is 2+2
+    P1 = game.askForNumber("2 + 2", 2)
+    while (P1 != 4) {
+        // Problem 1 is 2+2
+        P1 = game.askForNumber("2 + 2", 2)
+    }
+    // problem 2 is 10+5
+    p2 = game.askForNumber("10 + 5", 2)
+    while (p2 != 15) {
+        // problem 2 is 10+5
+        p2 = game.askForNumber("10 + 5", 2)
+    }
+    // problem 3 is 7+7
+    p3 = game.askForNumber("7 + 7", 2)
+    while (p3 != 14) {
+        // problem 3 is 7+7
+        p3 = game.askForNumber("7 + 7", 2)
+    }
+    // when not playing sudden death, it displays the score with best out of three.
+    game.splash("score: " + "N/A")
+}
+function InputLastName () {
+    return game.askForString("what is your last name initial?", 1)
+}
+function Change_score_by_1 () {
+    info.changeScoreBy(1)
+}
 let p3 = 0
 let p2 = 0
 let P1 = 0
 let practice = false
+let LastName = ""
+let Name = ""
 scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -124,28 +159,10 @@ scene.setBackgroundImage(img`
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
     `)
-let mySprite = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . b 5 5 b . . . 
-    . . . . . . b b b b b b . . . . 
-    . . . . . b b 5 5 5 5 5 b . . . 
-    . b b b b b 5 5 5 5 5 5 5 b . . 
-    . b d 5 b 5 5 5 5 5 5 5 5 b . . 
-    . . b 5 5 b 5 d 1 f 5 d 4 f . . 
-    . . b d 5 5 b 1 f f 5 4 4 c . . 
-    b b d b 5 5 5 d f b 4 4 4 4 b . 
-    b d d c d 5 5 b 5 4 4 4 4 4 4 b 
-    c d d d c c b 5 5 5 5 5 5 5 b . 
-    c b d d d d d 5 5 5 5 5 5 5 b . 
-    . c d d d d d d 5 5 5 5 5 d b . 
-    . . c b d d d d d 5 5 5 b b . . 
-    . . . c c c c c c c c b b . . . 
-    `, SpriteKind.Player)
 // asks for name of user and saves for later
-let Name = game.askForString("what is your name?", 10)
+Name = InputName()
 // asks for last name of user and saves for later
-let LastName = game.askForString("what is your last name initial?", 1)
+LastName = InputLastName()
 // asks if user wants to play sudden death
 let Play = game.ask("Do you want to play", " " + "sudden death?")
 // If the user does not want to play sudden death they do the 3 problems and get a score, else they play until they get one wrong or get all of them right.
@@ -153,28 +170,7 @@ if (Play == false) {
     // asks if user wants to play sudden death
     practice = game.ask("Do you want to practice? ")
     if (practice == true) {
-        // tells the user good luck with information previously provided
-        game.splash("In order to keep moving forward you must have it right" + " " + Name + " " + LastName + "." + " " + "!")
-        // Problem 1 is 2+2
-        P1 = game.askForNumber("2 + 2", 2)
-        while (P1 != 4) {
-            // Problem 1 is 2+2
-            P1 = game.askForNumber("2 + 2", 2)
-        }
-        // problem 2 is 10+5
-        p2 = game.askForNumber("10 + 5", 2)
-        while (p2 != 15) {
-            // problem 2 is 10+5
-            p2 = game.askForNumber("10 + 5", 2)
-        }
-        // problem 3 is 7+7
-        p3 = game.askForNumber("7 + 7", 2)
-        while (p3 != 14) {
-            // problem 3 is 7+7
-            p3 = game.askForNumber("7 + 7", 2)
-        }
-        // when not playing sudden death, it displays the score with best out of three.
-        game.splash("score: " + "N/A")
+        Play_Practice()
     } else {
         // tells the user good luck with information previously provided
         game.splash("good luck " + Name + " " + LastName + "." + " " + "!")
@@ -184,19 +180,19 @@ if (Play == false) {
         P1 = game.askForNumber("2 + 2", 2)
         // if the user is correct, the score is change by 1
         if (P1 == 4) {
-            info.changeScoreBy(1)
+            Change_score_by_1()
         }
         // problem 2 is 10+5
         p2 = game.askForNumber("10 + 5", 2)
         // if the user is correct, it changes the score by 1
         if (p2 == 15) {
-            info.changeScoreBy(1)
+            Change_score_by_1()
         }
         // problem 3 is 7+7
         p3 = game.askForNumber("7 + 7", 2)
         // if the user is correct, it changes the score by 1
         if (p3 == 14) {
-            info.changeScoreBy(1)
+            Change_score_by_1()
         }
         // when not playing sudden death, it displays the score with best out of three.
         game.splash("score: " + info.score() + "/3")
@@ -208,21 +204,21 @@ if (Play == false) {
     P1 = game.askForNumber("2 + 2", 2)
     // if correct score changes by 1 but if wrong game over
     if (P1 == 4) {
-        info.changeScoreBy(1)
+        Change_score_by_1()
     } else {
         game.over(false)
     }
     p2 = game.askForNumber("10 + 5", 2)
     // if correct if correct score changes by 1 but if wrong game over
     if (p2 == 15) {
-        info.changeScoreBy(1)
+        Change_score_by_1()
     } else {
         game.over(false)
     }
     p3 = game.askForNumber("7 + 7", 2)
     // if correct the game is won, if wrong game is over.
     if (p3 == 14) {
-        info.changeScoreBy(1)
+        Change_score_by_1()
         game.over(true)
     } else {
         game.over(false)
