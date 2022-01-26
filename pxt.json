@@ -8,7 +8,8 @@
         "sevenseg": "*",
         "controller": "*",
         "Color Fading": "github:jwunderl/pxt-color#v0.2.1",
-        "arcade-background-scroll": "github:microsoft/arcade-background-scroll#926e12eefffd09d453c7cde73f8d6ebd0e666d9d"
+        "arcade-background-scroll": "github:microsoft/arcade-background-scroll#926e12eefffd09d453c7cde73f8d6ebd0e666d9d",
+        "color-coded-tilemap": "*"
     },
     "files": [
         "README.md",

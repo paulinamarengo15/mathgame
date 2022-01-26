@@ -6,7 +6,6 @@ function PracticeProblems (num: number, num2: number) {
         // Problem 1 is 2+2
         P1 = game.askForNumber("" + num + "+" + num2 + "" + "=", 2)
     }
-    return answer
 }
 function Normal (num: number, num2: number) {
     answer = num + num2
@@ -28,7 +27,6 @@ function SuddenDeath (num: number, num2: number) {
     } else {
         game.over(false)
     }
-    return answer
 }
 let P1 = 0
 let answer = 0
@@ -155,6 +153,7 @@ scene.setBackgroundImage(img`
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
     `)
+color.setColor(1, color.rgb(255, 255, 255))
 let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -196,8 +195,14 @@ if (Play == false) {
         game.splash("good luck " + Name + " " + LastName + "." + " " + "!")
         info.setScore(0)
         Normal(randint(0, 10), randint(0, 10))
+        // when not playing sudden death, it displays the score with best out of three.
+        game.splash("answer: " + answer)
         Normal(randint(0, 10), randint(0, 10))
+        // when not playing sudden death, it displays the score with best out of three.
+        game.splash("answer: " + answer)
         Normal(randint(0, 10), randint(0, 10))
+        // when not playing sudden death, it displays the score with best out of three.
+        game.splash("answer: " + answer)
         // when not playing sudden death, it displays the score with best out of three.
         game.splash("score: " + info.score() + "/3")
     }
